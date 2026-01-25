@@ -77,7 +77,8 @@ while True:
     print("3. View balance")
     print("4. View expenses by category")
     print("5. View all transactions")
-    print("6. Exit")
+    print("6. Search transactions by category")
+    print("7. Exit")
 
     user_action = input("Enter your choice: ").strip()
 
@@ -139,6 +140,24 @@ while True:
                 print(f"[{t_type}] {amount} | {category} | {description}")
 
     elif user_action == "6":
+        if not account.transactions:
+            print("No transactions recorded yet.")
+        else:
+            user_search = input("Search category: ").strip()
+            found = False
+
+            for transaction in account.transactions:
+                if transaction.category == user_search:
+                    print(
+                        f"[{transaction.transaction_type.upper()}] "
+                        f"{transaction.amount} | {transaction.category} | {transaction.description}"
+                    )
+                found = True
+
+                if not found:
+                    print("No transactions found for this category.")
+
+    elif user_action == "7":
         print("Goodbye 👋")
         break
 
