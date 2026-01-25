@@ -54,7 +54,6 @@ The goal of this project is to practice **Python fundamentals**, **Object-Orient
 
 ## ▶️ How to Run
 Make sure Python 3 is installed.
-### ✅ Correct version
 ```bash
 python3 finance_tracker.py
 ```

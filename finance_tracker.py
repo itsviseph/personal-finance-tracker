@@ -58,18 +58,31 @@ class Account:
 # -----------------------------
 account = Account()
 
+
+def get_float_input(prompt):
+    while True:
+        user_input = input(prompt)
+
+        try:
+            value = float(user_input)
+            return value
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+
 while True:
     print("\n=== Personal Finance Tracker ===")
     print("1. Add income")
     print("2. Add expense")
     print("3. View balance")
     print("4. View expenses by category")
-    print("5. Exit")
+    print('5. View all transactions')
+    print("6. Exit")
 
     user_action = input("Enter your choice: ").strip()
 
     if user_action == "1":
-        amount = float(input("Enter income amount: "))
+        amount = get_float_input("Enter income amount: ")
         category = input("Enter category: ")
         description = input("Enter description: ")
 
@@ -84,7 +97,7 @@ while True:
         print("Income added successfully.")
 
     elif user_action == "2":
-        amount = float(input("Enter expense amount: "))
+        amount = get_float_input("Enter expense amount: ")
         category = input("Enter category: ")
         description = input("Enter description: ")
 
@@ -111,7 +124,9 @@ while True:
             for category, amount in expenses.items():
                 print(f"{category}: {amount}")
 
-    elif user_action == "5":
+    elif 
+
+    elif user_action == "6":
         print("Goodbye 👋")
         break
 
