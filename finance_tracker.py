@@ -76,7 +76,7 @@ while True:
     print("2. Add expense")
     print("3. View balance")
     print("4. View expenses by category")
-    print('5. View all transactions')
+    print("5. View all transactions")
     print("6. Exit")
 
     user_action = input("Enter your choice: ").strip()
@@ -124,7 +124,19 @@ while True:
             for category, amount in expenses.items():
                 print(f"{category}: {amount}")
 
-    elif 
+    elif user_action == "5":
+        print("\nTransaction History:")
+
+        if not account.transactions:
+            print("No transactions recorded yet.")
+        else:
+            for transaction in account.transactions:
+                t_type = transaction.transaction_type.upper()
+                amount = transaction.amount
+                category = transaction.category
+                description = transaction.description
+
+                print(f"[{t_type}] {amount} | {category} | {description}")
 
     elif user_action == "6":
         print("Goodbye 👋")
