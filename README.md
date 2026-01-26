@@ -13,9 +13,10 @@ This project is designed to practice **Python fundamentals**, **Object-Oriented 
 - View current balance (income − expenses)  
 - View expenses grouped by category  
 - View complete transaction history  
+- Search transactions by category, description, or amount  
 - Interactive, menu-driven CLI  
 - Safe numeric input handling  
-
+ 
 ---
 
 ## 🧠 Concepts & Skills Used
@@ -80,15 +81,15 @@ The CLI performs **no calculations itself**.
 ## 🔁 Data Flow
 
 ```
-User Input
-   ↓
-CLI creates Transaction
-   ↓
-Account stores Transaction
-   ↓
-Account calculates totals & reports
-   ↓
-CLI displays results
+User Input  
+↓  
+CLI creates or queries Transaction data  
+↓  
+Account stores and processes Transactions  
+↓  
+Account returns calculated or filtered results  
+↓  
+CLI formats and displays output  
 ```
 
 The `Account` object is the **single source of truth** for all financial data.
@@ -122,13 +123,14 @@ Follow the on-screen menu to:
 
 ## 🔮 Planned Improvements
 
-- Save and load data using JSON  
-- Add timestamps to transactions  
-- Monthly and yearly summaries  
-- Export reports to CSV  
-- Unit tests  
-- Web-based interface in the future  
-
+- Persist data using JSON (save/load)
+- Add timestamps to transactions
+- Edit or delete transactions
+- Monthly and yearly summaries
+- Export reports to CSV
+- Unit tests
+- Web-based interface in the future
+ 
 ---
 
 ## 🧑‍💻 Author
