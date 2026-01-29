@@ -1,5 +1,5 @@
 
-    # 💰 Personal Finance Tracker CLI
+# 💰 Personal Finance Tracker CLI
 
     A command-line personal finance tracker built using **Python** that allows users to record income, expenses, and recurring subscriptions, calculate balances, and analyze spending patterns.
 
@@ -7,32 +7,32 @@
 
     ---
 
-    ## 🚀 Features
+ ## 🚀 Features
 
-    ### Transactions
+  ### Transactions
     - Add income transactions  
     - Add expense transactions  
     - View complete transaction history  
     - Search transactions by category, description, or amount  
 
-    ### Financial Insights
+  ### Financial Insights
     - View current balance (income − expenses)  
     - View expenses grouped by category  
     - View adjusted balance (after subscriptions)  
 
-    ### Subscriptions
+  ### Subscriptions
     - Add recurring subscriptions  
     - View all subscriptions  
     - Calculate total monthly subscription cost  
     - View top subscriptions by cost  
 
-    ### General
+  ### General
     - Interactive, menu-driven CLI  
     - Safe numeric input handling  
 
     ---
 
-    ## 🧠 Concepts & Skills Used
+ ## 🧠 Concepts & Skills Used
 
     - Python classes and objects  
     - Object-Oriented Programming (OOP)  
@@ -45,12 +45,11 @@
     - CLI application design  
 
     ---
-
-    ## 🏗️ Architecture Overview
+ ## 🏗️ Architecture Overview
 
     The application follows a clean separation of responsibilities:
 
-    ### Transaction
+  ### Transaction
     Represents a single financial record (income or expense).
 
     Stores:
@@ -63,7 +62,7 @@
 
     ---
 
-    ### Subscription
+  ### Subscription
     Represents a recurring expense.
 
     Stores:
@@ -77,7 +76,7 @@
 
     ---
 
-    ### Account
+  ### Account
     Acts as the **core business logic layer**.
 
     Responsibilities:
@@ -96,7 +95,7 @@
 
     ---
 
-    ### CLI Application
+  ### CLI Application
     Handles all user interaction.
 
     Responsibilities:
@@ -110,7 +109,7 @@
 
     ---
 
-    ## 🔁 Data Flow
+ ## 🔁 Data Flow
 
     ```
     User Input  
@@ -128,7 +127,7 @@
 
     ---
 
-    ## ▶️ How to Run
+ ## ▶️ How to Run
 
     Make sure Python 3 is installed.
 
@@ -145,7 +144,7 @@
 
     ---
 
-    ## 📌 Example Use Cases
+ ## 📌 Example Use Cases
 
     - Track daily or monthly expenses  
     - Monitor recurring subscriptions  
@@ -155,7 +154,7 @@
 
     ---
 
-    ## 🔮 Planned Improvements
+ ## 🔮 Planned Improvements
 
     - Persist data using JSON (save/load)
     - Add timestamps to transactions
@@ -168,7 +167,7 @@
 
     ---
 
-    ## 🧑‍💻 Author
+ ## 🧑‍💻 Author
 
     Built as part of a hands-on Python learning journey by **Vishal Dsouza**  
     Focused on writing **clean, readable, and extensible code**.
