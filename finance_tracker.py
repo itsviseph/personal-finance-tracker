@@ -14,17 +14,38 @@ class Transaction:
 
 
 # -----------------------------
+# Subscription class
+# -----------------------------
+
+
+class Subscription:
+    def __init__(self, name, amount, category, billing_cycle):
+        self.name = name
+        self.amount = amount
+        self.category = category
+        self.billing_cycle = billing_cycle
+        self.active = True
+
+
+# -----------------------------
 # Account class
 # -----------------------------
 class Account:
     def __init__(self):
         self.transactions = []
+        self.subscriptions = []
 
     def add_transaction(self, transaction):
         self.transactions.append(transaction)
 
+    def add_subscription(self, subscription):
+        self.subscriptions.append(subscription)
+
     def get_balance(self):
         return self.get_total_income() - self.get_total_expenses()
+
+    def get_adjusted_balance(self):
+        return self.get_balance() - self.get_monthly_subscription_cost()
 
     def get_total_income(self):
         total = 0
@@ -51,6 +72,23 @@ class Account:
                 )
 
         return category_totals
+
+    def get_monthly_subscription_cost(self):
+        total = 0
+        for subscription in self.subscriptions:
+            if subscription.active:
+                total += subscription.amount
+        return total
+
+    def get_active_subscriptions_sorted(self):
+        active_subscription = []
+
+        for subscription in self.subscriptions:
+            if subscription.active:
+                active_subscription.append(subscription)
+
+        active_subscription.sort(key=lambda sub: sub.amount, reverse=True)
+        return active_subscription
 
 
 # -----------------------------
