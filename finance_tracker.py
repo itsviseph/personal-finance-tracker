@@ -19,11 +19,11 @@ class Transaction:
 
 
 class Subscription:
-    def __init__(self, name, amount, category, billing_cycle):
+    def __init__(self, name, amount, category, billing_cycle_days):
         self.name = name
         self.amount = amount
         self.category = category
-        self.billing_cycle = billing_cycle
+        self.billing_cycle_days = billing_cycle_days
         self.active = True
 
 
@@ -81,14 +81,17 @@ class Account:
         return total
 
     def get_active_subscriptions_sorted(self):
-        active_subscription = []
+        active_subscriptions = []
 
         for subscription in self.subscriptions:
             if subscription.active:
-                active_subscription.append(subscription)
+                active_subscriptions.append(subscription)
 
-        active_subscription.sort(key=lambda sub: sub.amount, reverse=True)
-        return active_subscription
+        active_subscriptions.sort(key=lambda sub: sub.amount, reverse=True)
+        return active_subscriptions
+
+    def get_top_subscriptions(self, limit=3):
+        return self.get_active_subscriptions_sorted()[:limit]
 
 
 # -----------------------------
@@ -116,7 +119,12 @@ while True:
     print("4. View expenses by category")
     print("5. View all transactions")
     print("6. Search transactions")
-    print("7. Exit")
+    print("7. Add subscription")
+    print("8. View subscriptions")
+    print("9. View monthly subscription cost")
+    print("10. View adjusted balance")
+    print("11. View top subscriptions")
+    print("12. Exit")
 
     user_action = input("Enter your choice: ").strip()
 
@@ -200,6 +208,60 @@ while True:
                 print("No transactions found for this search.")
 
     elif user_action == "7":
+        name = input("Enter subscription name: ")
+        amount = get_float_input("Enter subscription amount: ")
+        category = input("Enter category: ")
+        billing_cycle_days = get_float_input("Enter billing cycle days: ")
+
+        subscription = Subscription(
+            name=name,
+            amount=amount,
+            category=category,
+            billing_cycle_days=billing_cycle_days,
+        )
+        account.add_subscription(subscription)
+        print("Subscription added successfully.")
+
+    elif user_action == "8":
+        print("\nYour current subscriptions:")
+
+        if not account.subscriptions:
+            print("No subscriptions recorded yet.")
+        else:
+            for subscription in account.subscriptions:
+                name = subscription.name.upper()
+                amount = subscription.amount
+                category = subscription.category
+                billing_cycle = subscription.billing_cycle_days
+
+                print(f"[{name}] {amount} | {category} | {billing_cycle} days")
+
+    elif user_action == "9":
+        total = account.get_monthly_subscription_cost()
+        print(f"Your monthly subscription cost is: {total}")
+
+    elif user_action == "10":
+        balance = account.get_adjusted_balance()
+        print(f"Your adjusted balance is: {balance}")
+
+    elif user_action == "11":
+        limit_input = input("How many top subscriptions? (default 3): ").strip()
+
+        if limit_input == "":
+            limit = 3
+        else:
+            limit = int(limit_input)
+
+        top_subs = account.get_top_subscriptions(limit)
+
+        if not top_subs:
+            print("No active subscriptions.")
+        else:
+            print("\nTop subscriptions:")
+            for sub in top_subs:
+                print(f"{sub.name} | {sub.amount} | {sub.billing_cycle_days} days")
+
+    elif user_action == "12":
         print("Goodbye 👋")
         break
 
