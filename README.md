@@ -2,7 +2,7 @@
 
 A command-line personal finance tracker built using **Python** that allows users to record income, expenses, and recurring subscriptions, calculate balances, and analyze spending patterns.
 
-This project is designed to practice **Python fundamentals**, **Object-Oriented Programming (OOP)**, and building a **realistic, extensible CLI application** similar to real-world financial tools.
+This project focuses on writing **clean, modular, and production-style Python code**, using proper packages, modules, and separation of concerns—similar to real-world backend systems.
 
 ---
 
@@ -28,12 +28,13 @@ This project is designed to practice **Python fundamentals**, **Object-Oriented 
 ### General
 - Interactive, menu-driven CLI  
 - Safe numeric input handling  
+- Modular, scalable project structure  
 
 ---
 
 ## 🧠 Concepts & Skills Used
 
-- Python classes and objects  
+- Python packages & modules  
 - Object-Oriented Programming (OOP)  
 - Encapsulation & separation of concerns  
 - Lists and dictionaries  
@@ -42,46 +43,39 @@ This project is designed to practice **Python fundamentals**, **Object-Oriented 
 - Data aggregation and reporting  
 - Sorting and filtering data  
 - CLI application design  
+- `__name__ == "__main__"` execution pattern  
 
 ---
 
-## 🏗️ Architecture Overview
+## 🏗️ Project Structure
+```
+personal-finance-tracker/
+│
+├── README.md
+├── main.py
+└── finance_tracker/
+  ├── __init__.py
+  ├── models.py
+  ├── account.py
+  └── cli.py
+```
 
-The application follows a clean separation of responsibilities:
+## 📂 File Responsibilities
 
-### Transaction
-Represents a single financial record (income or expense).
+### `models.py`
+Contains **data-only classes**:
+- `Transaction`
+- `Subscription`
 
-Stores:
-- `amount` (float)
-- `transaction_type` (`income` / `expense`)
-- `category` (e.g. food, rent, salary)
-- `description` (free text)
-
-This class is **data-only** — no calculations.
-
----
-
-### Subscription
-Represents a recurring expense.
-
-Stores:
-- `name`
-- `amount`
-- `category`
-- `billing_cycle_days`
-- `active` status
-
-Subscriptions are treated as **recurring financial commitments** and are factored into adjusted balance calculations.
+No calculations or user interaction logic.
 
 ---
 
-### Account
-Acts as the **core business logic layer**.
+### `account.py`
+Acts as the **business logic layer**.
 
 Responsibilities:
-- Store all transactions
-- Store all subscriptions
+- Store transactions and subscriptions
 - Calculate:
   - Total income
   - Total expenses
@@ -91,30 +85,44 @@ Responsibilities:
   - Monthly subscription cost
   - Top subscriptions by cost
 
-All calculations and aggregation live here.
+This is the **single source of truth** for financial data.
 
 ---
 
-### CLI Application
-Handles all user interaction.
+### `cli.py`
+Handles **all user interaction**.
 
 Responsibilities:
 - Display menu options
-- Collect user input
+- Collect and validate user input
 - Create `Transaction` and `Subscription` objects
-- Delegate logic to the `Account` class
-- Display formatted output
+- Call methods on the `Account` class
+- Format and display output
 
 The CLI performs **no calculations itself**.
 
 ---
+
+### `main.py`
+The **application entry point**.
+
+Responsibilities:
+- Start the CLI application
+- Ensure code only runs when executed directly
+
+Uses the standard Python pattern:
+```python
+if __name__ == "__main__":
+    run()
+```
+run() is imported from finance_tracker.cli
 
 ## 🔁 Data Flow
 
  ```
 User Input  
   ↓  
-CLI creates or queries Transactions / Subscriptions  
+CLI collects input 
   ↓  
 Account stores and processes data  
   ↓  
@@ -131,8 +139,9 @@ The `Account` object is the **single source of truth** for all financial data.
 
 Make sure Python 3 is installed.
 
+From the project root directory:
 ```bash
-python3 finance_tracker.py
+python3 main.py
 ```
 
 Follow the on-screen menu to:
